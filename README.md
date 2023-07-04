@@ -4,7 +4,7 @@
 	<img src="WAKATIME BADGE?style=flat"/>
 	<br />
 	<img src="https://img.shields.io/badge/norme-KO-red?style=flat"/>
-	<img src="https://img.shields.io/badge/leaks-NOt%20Checked-red?style=flat"/>
+	<img src="https://img.shields.io/badge/leaks-Not%20Checked-red?style=flat"/>
 	<img src="https://img.shields.io/badge/bonus-not%20done-red?style=flat"/>
 	<img src="https://img.shields.io/badge/-unknown%2F100-inactive?style=flat&logo=42&logoColor=000" />
 </div>
