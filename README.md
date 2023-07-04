@@ -20,7 +20,7 @@ here goes the proyect folder tree
 
 ```
 
-<h2 align="center">🚶🏻‍♂️ PROYECT ROADMAP 🚶</h2>
+<h2 align="center">🚶 PROYECT ROADMAP 🚶</h2>
 
 <h3 align="center"> [descriptive emoji] LIST HEADER</h3>
 
