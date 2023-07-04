@@ -1,5 +1,3 @@
-# philosophers
-Nunca pensé que la filosofía llegara a ser tan letal
 <div align="center">
 	<h1> Philosophers </h1>
 	<p>Nunca pensé que la filosofía llegara a ser tan letal</p>
