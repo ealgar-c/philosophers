@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:01:08 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/14 12:35:11 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:30:58 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,110 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-t_master	*init_academy(int ac, char **av)
+bool	valid_atoi(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	check_args(int ac, char **av)
+{
+	if (valid_atoi(av[1]) && valid_atoi(av[2]) && valid_atoi(av[3])
+		&& valid_atoi(av[4]))
+	{
+		if (ac == 6)
+		{
+			if (valid_atoi(av[5]))
+				return (true);
+		}
+		else
+			return (true);
+	}
+}
+
+void	bad_args(void)
+{
+	printf("Bad arguments, Execute the program as shown below:\n");
+	printf("./philo number_of_philosophers time_to_die time_to_eat ");
+	printf("time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
+	exit(1);
+}
+
+void	init_academy(t_master *academy, int ac, char **av)
+{
+	academy->number_of_philos = ft_atoi(av[1]);
+	academy->time_to_die = ft_atoi(av[2]);
+	academy->time_to_eat = ft_atoi(av[3]);
+	academy->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		academy->nb_of_meals = ft_atoi(av[5]);
+	else
+		academy->nb_of_meals = -1;
+	academy->arr_threads = malloc(sizeof(pthread_t)
+			* academy->number_of_philos);
+	academy->arr_philos = malloc(sizeof(t_philo) * academy->number_of_philos);
+	academy->arr_forks = malloc(sizeof(pthread_mutex_t)
+			* academy->number_of_philos);
+}
+
+void	init_forks(t_master *academy)
+{
+	int	i;
+
+	i = 0;
+	while (i < academy->number_of_philos)
+	{
+		pthread_mutex_init(&academy->arr_forks[i], NULL);
+		i++;
+	}
+}
+
+void	init_philos(t_master *academy)
+{
+	int	i;
+
+	i = 0;
+	while (i < academy->number_of_philos)
+	{
+		academy->arr_philos[i].index = i + 1;
+		academy->arr_philos[i].nb_of_meals = 0;
+		academy->arr_philos[i].last_meal_ts = 0;
+		academy->arr_philos[i].academy = academy;
+		academy->arr_philos[i].left_fork = &academy->arr_forks[i];
+		if (i == academy->number_of_philos - 1)
+			academy->arr_philos[i].right_fork = &academy->arr_forks[0];
+		else
+			academy->arr_philos[i].right_fork = &academy->arr_forks[i + 1];
+		i++;
+	}
+}
+
+int	main(int ac, char **av)
+{
+	t_master	academy;
+
+	if (ac == 5 || ac == 6)
+	{
+		if (!check_args(ac, av))
+			bad_args();
+		init_academy(&academy, ac, av);
+		init_forks(&academy);
+		init_philos(&academy);
+		init_threads(&academy);
+		close_threads(&academy);
+	}
+	return (0);
+}
+
+/* t_master	*init_academy(int ac, char **av)
 {
 	t_master	*academy;
 
@@ -127,8 +230,8 @@ void	*ft_philo(void *academy_cast)
 	{
 		if (philo_index % 2 == academy->actual_group)
 			eating(academy, philo_index);
-/* 		sleeping(academy, philo_index);
-		thinking(academy, philo_index); */
+		sleeping(academy, philo_index);
+		thinking(academy, philo_index); 
 	}
 	return (NULL);
 }
@@ -188,4 +291,4 @@ int	main(int ac, char **av)
 		main_loop(academy);
 		join_philothreads(academy);
 	}
-}
+} */
