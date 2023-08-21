@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:28:35 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:32:12 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_philo(t_philo *philo)
 	pthread_create(&monitoring_thread, NULL, monitoring, philo);
 	while (!finished_meal(philo->academy) && !philo->academy->philodied)
 	{
-		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die)
+		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
+			&& !philo->academy->philodied)
 		{
 			print_state(philo, 3);
 			sem_post(philo->academy->ph_dead);

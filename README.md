@@ -16,14 +16,32 @@ Eat, Sleep, Spaghetti, repeat. This project is about learning how threads work b
 <h2 align="center">🌲 PROYECT TREE 🌲</h2>
 
 ```
-here goes the proyect folder tree
+.
+├── philo
+│   ├── Makefile
+│   ├── include
+│   │   └── philo.h
+│   ├── objs
+│   └── src
+│       ├── checker.c
+│       ├── initialize.c
+│       ├── main.c
+│       ├── routine.c
+│       ├── states.c
+│       └── time.c
+└── philo_bonus
+    ├── Makefile
+    ├── include
+    │   └── philo_bonus.h
+    ├── objs
+    └── src
+        ├── checker.c
+        ├── initialize.c
+        ├── main.c
+        ├── routine.c
+        ├── states.c
+        └── time.c
 
 ```
-
-<h2 align="center">🚶 PROYECT ROADMAP 🚶</h2>
-
-<h3 align="center"> [descriptive emoji] LIST HEADER</h3>
-
-*  list content
 
 <h2 align="center">⚙️ PROYECT GENERAL PROCEDURE ⚙️</h2>

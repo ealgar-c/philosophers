@@ -15,7 +15,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJ)
-	@ echo "Philo compiled"
+	@ echo "Philo_bonus compiled"
 
 clean:
 	@$(RM) $(OBJ) $(BONUS_OBJ)
