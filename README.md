@@ -1,7 +1,7 @@
 <div align="center">
 	<h1> Philosophers </h1>
 	<p>Nunca pensé que la filosofía llegara a ser tan letal</p>
-	<img src="WAKATIME BADGE?style=flat"/>
+	<img src="https://wakatime.com/badge/user/a0e860d2-9914-4fed-8143-b9fd5cf5e6c1/project/75f3be01-8e05-449b-a51d-3d9143f919a5.svg?style=flat"/>
 	<br />
 	<img src="https://img.shields.io/badge/norme-OK-success?style=flat"/>
 	<img src="https://img.shields.io/badge/leaks-Clean-success?style=flat"/>
