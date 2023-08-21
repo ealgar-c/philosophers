@@ -4,7 +4,7 @@ RM = rm -f
 
 NAME = philo
 SRC_DIR = src/
-SRC = main.c
+SRC = main.c checker.c initialize.c routine.c states.c time.c
 OBJ_DIR = objs/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
