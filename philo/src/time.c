@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:41:54 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 12:42:06 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:58:06 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ long	get_actual_time(void)
 long	process_timer(t_philo *philo)
 {
 	return (get_actual_time() - philo->academy->init_time);
+}
+
+void	ft_usleep(int time)
+{
+	usleep(time * 1000);
 }

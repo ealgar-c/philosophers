@@ -6,26 +6,22 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:32:12 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:17:38 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
 
-bool	finished_meal(t_master *academy)
+bool	finished_meal(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
-	if (academy->nb_of_meals == -1)
+	if (philo->academy->nb_of_meals == -1)
 		return (false);
-	while (i < academy->number_of_philos)
-	{
-		if (academy->arr_philos[i].nb_of_meals < academy->nb_of_meals)
-			return (false);
-		i++;
-	}
-	return (true);
+	if (philo->nb_of_meals == philo->academy->nb_of_meals)
+		return (true);
+	return (false);
 }
 
 void	*monitoring(void *philo_tocast)
@@ -43,12 +39,31 @@ void	*monitoring(void *philo_tocast)
 	}
 }
 
+void	*check_death(void *philo_tocast)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)philo_tocast;
+	while (1)
+	{
+		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
+			&& !philo->academy->philodied)
+		{
+			print_state(philo, 3);
+			sem_post(philo->academy->ph_dead);
+			exit(0);
+		}
+	}
+}
+
 void	ft_philo(t_philo *philo)
 {
 	pthread_t	monitoring_thread;
+	pthread_t	check_death_thread;
 
 	pthread_create(&monitoring_thread, NULL, monitoring, philo);
-	while (!finished_meal(philo->academy) && !philo->academy->philodied)
+	pthread_create(&check_death_thread, NULL, check_death, philo);
+	while (!finished_meal(philo) && !philo->academy->philodied)
 	{
 		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
 			&& !philo->academy->philodied)

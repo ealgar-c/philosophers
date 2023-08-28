@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 12:43:32 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:53:42 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,42 @@ bool	finished_meal(t_master *academy)
 	return (true);
 }
 
-void	*ft_philo(void *philo_tocast)
+void	*check_death(void *philo_tocast)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_tocast;
-	while (!philo->academy->ph_dead && !finished_meal(philo->academy))
+	while (1)
 	{
+		if (finished_meal(philo->academy))
+			break ;
 		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die)
 		{
 			print_state(philo, 3);
 			philo->academy->ph_dead = true;
 			return (NULL);
 		}
+	}
+	return (NULL);
+}
+
+void	*ft_philo(void *philo_tocast)
+{
+	t_philo		*philo;
+	pthread_t	check_death_thread;
+
+	philo = (t_philo *)philo_tocast;
+	philo->last_meal = get_actual_time();
+	pthread_create(&check_death_thread, NULL, check_death, philo);
+	if (philo->index % 2 == 0)
+		usleep(1);
+	while (!philo->academy->ph_dead && !finished_meal(philo->academy))
+	{
 		thinking(philo);
 		eating(philo);
 		sleeping(philo);
 	}
+	pthread_join(check_death_thread, NULL);
 	return (NULL);
 }
 

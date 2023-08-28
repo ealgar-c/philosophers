@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:48 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:14:49 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:44:13 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	print_state(t_philo *philo, int state)
 {
 	if (state == 0)
-		printf("%ldms %d is eating\n", process_timer(philo), philo->index);
+		printf("%ld %d is eating\n", process_timer(philo), philo->index);
 	else if (state == 1)
-		printf("%ldms %d is thinking\n", process_timer(philo), philo->index);
+		printf("%ld %d is thinking\n", process_timer(philo), philo->index);
 	else if (state == 2)
-		printf("%ldms %d is sleeping\n", process_timer(philo), philo->index);
+		printf("%ld %d is sleeping\n", process_timer(philo), philo->index);
 	else if (state == 3)
-		printf("%ldms %d died\n", process_timer(philo), philo->index);
+		printf("%ld %d died\n", process_timer(philo), philo->index);
 	else if (state == 4)
-		printf("%ldms %d has taken a fork\n",
+		printf("%ld %d has taken a fork\n",
 			process_timer(philo), philo->index);
 	else
 		return ;
@@ -36,7 +36,7 @@ void	thinking(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	if (finished_meal(philo->academy))
+	if (finished_meal(philo))
 		return ;
 	sem_wait(philo->academy->forks);
 	print_state(philo, 4);

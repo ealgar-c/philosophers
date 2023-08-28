@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:43:25 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:28:48 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:29:18 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 
 // routine.c
-bool	finished_meal(t_master *academy);
+bool	finished_meal(t_philo *philo);
 void	ft_philo(t_philo *philo);
 void	crt_routines(t_master *academy);
 void	clr_routines(t_master *academy);

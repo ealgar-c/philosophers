@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:43:25 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 12:49:03 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:53:24 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	bad_args(void);
 // time.c
 long	get_actual_time(void);
 long	process_timer(t_philo *philo);
+void	ft_usleep(int time);
 
 //initialize.c
 void	init_academy(t_master *academy, int ac, char **av);
