@@ -1,7 +1,9 @@
+# COMPILER INFO
 CC = cc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
+# GENERAL INFO
 NAME = philo
 SRC_DIR = src/
 SRC = main.c checker.c initialize.c routine.c states.c time.c
@@ -11,17 +13,22 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) -c $< -o $@
 
-all: $(NAME)
+# COLOR CODES
+GREEN_CODE=\033[0;32m
+RED_CODE=\033[0;31m
+CEND_CODE=\033[0m
 
+all: $(NAME)
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJ)
-	@ echo "Philo compiled"
+	@ echo "-->$(GREEN_CODE) $(NAME) compiled ✅ $(CEND_CODE)<--"
 
 clean:
-	@$(RM) $(OBJ) $(BONUS_OBJ)
+	@$(RM) $(OBJ)
+	@ echo "-->$(RED_CODE) $(NAME) cleaned 🗑  $(CEND_CODE)<--"
 
 fclean: clean
-	@$(RM) $(NAME) $(BONUS_NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

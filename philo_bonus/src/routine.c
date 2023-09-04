@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/23 15:17:38 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/04 10:25:24 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*check_death(void *philo_tocast)
 	while (1)
 	{
 		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
-			&& !philo->academy->philodied)
+			&& !philo->academy->philodied && !finished_meal(philo))
 		{
 			print_state(philo, 3);
 			sem_post(philo->academy->ph_dead);
@@ -101,14 +101,4 @@ void	crt_routines(t_master *academy)
 		usleep(100);
 	}
 	waitpid(-1, NULL, 0);
-}
-
-void	clr_routines(t_master *academy)
-{
-	sem_unlink("forks");
-	sem_close(academy->forks);
-	sem_unlink("ph_dead");
-	sem_close(academy->ph_dead);
-	free(academy->arr_philos);
-	free(academy->arr_threads);
 }

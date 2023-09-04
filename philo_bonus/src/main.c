@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:01:08 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 17:55:14 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/04 10:29:08 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	ft_atoi(const char *str)
 	num *= sn;
 	return (num);
 }
+
+/* void	ft_leaks(void)
+{
+	system("leaks -q philo_bonus");
+	atexit(ft_leaks);
+} */
 
 int	main(int ac, char **av)
 {
