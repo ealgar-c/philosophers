@@ -24,11 +24,11 @@ $(NAME): $(OBJ)
 	@ echo "-->$(GREEN_CODE) $(NAME) compiled ✅ $(CEND_CODE)<--"
 
 clean:
-	@$(RM) $(OBJ) $(BONUS_OBJ)
-	@ echo "-->$(RED_CODE) $(NAME) cleaned 🗑 $(CEND_CODE)<--"
+	@$(RM) $(OBJ)
+	@ echo "-->$(RED_CODE) $(NAME) cleaned 🗑  $(CEND_CODE)<--"
 
 fclean: clean
-	@$(RM) $(NAME) $(BONUS_NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

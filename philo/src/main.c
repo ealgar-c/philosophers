@@ -6,36 +6,13 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:01:08 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/04 10:28:54 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:06:37 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sn;
-	int	num;
 
-	i = 0;
-	sn = 1;
-	num = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
-		i++;
-	if (str[i] == '-')
-		sn *= -1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = (str[i] - 48) + (num * 10);
-		i++;
-	}
-	num *= sn;
-	return (num);
-}
 
 /* void	ft_leaks(void)
 {
@@ -43,7 +20,7 @@ int	ft_atoi(const char *str)
 	atexit(ft_leaks);
 } */
 
-int	main(int ac, char **av)
+int	main(int ac, char **av) // hay que comprobar los leaks de momoria aunque no deberia de haber.
 {
 	t_master	academy;
 
@@ -57,6 +34,7 @@ int	main(int ac, char **av)
 		init_academy(&academy, ac, av);
 		init_forks(&academy);
 		init_philos(&academy);
+		init_mutexes(&academy);
 		crt_routines(&academy);
 		clr_routines(&academy);
 	}

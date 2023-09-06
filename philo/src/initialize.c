@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:16 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/28 13:24:36 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:27:27 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_academy(t_master *academy, int ac, char **av)
 	academy->arr_philos = malloc(sizeof(t_philo) * academy->number_of_philos);
 	academy->arr_forks = malloc(sizeof(pthread_mutex_t)
 			* academy->number_of_philos);
+	academy->dr_mutexes = malloc(sizeof(t_dr));
 }
 
 void	init_forks(t_master *academy)
@@ -41,6 +42,12 @@ void	init_forks(t_master *academy)
 	}
 }
 
+void	init_mutexes(t_master *academy)
+{
+	pthread_mutex_init(&academy->arr_philos->academy->dr_mutexes->eating, NULL);
+	pthread_mutex_init(&academy->arr_philos->academy->dr_mutexes->dead, NULL);
+	pthread_mutex_init(&academy->arr_philos->academy->dr_mutexes->print, NULL);
+}
 void	init_philos(t_master *academy)
 {
 	int	i;
