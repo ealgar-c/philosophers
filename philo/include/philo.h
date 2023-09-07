@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:43:25 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/06 14:52:43 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:29:51 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	sleeping(t_philo *philo);
 bool	finished_meal(t_master *academy);
 void	*ft_philo(void *philo_tocast);
 void	crt_routines(t_master *academy);
-void	clr_routines(t_master *academy);
 
 // utils.c
 void	*ft_memcpy(void *dst, const void *src, size_t n);

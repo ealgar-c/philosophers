@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:48 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/06 15:06:09 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:25:24 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void	thinking(t_philo *philo)
 	print_state(philo, 1);
 }
 
-void	eating(t_philo *philo) // esto no se como cojones solucionarlo se puede intentar quitar el orden de coger tenedores pero igual lo jodo
+void	take_forks(t_philo *philo)
 {
-	if (finished_meal(philo->academy))
-		return ;
 	if (philo->index % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
@@ -57,6 +55,13 @@ void	eating(t_philo *philo) // esto no se como cojones solucionarlo se puede int
 		pthread_mutex_lock(philo->right_fork);
 		print_state(philo, 4);
 	}
+}
+
+void	eating(t_philo *philo)
+{
+	if (finished_meal(philo->academy))
+		return ;
+	take_forks(philo);
 	print_state(philo, 0);
 	pthread_mutex_lock(&philo->academy->dr_mutexes->dead);
 	philo->last_meal = get_actual_time();

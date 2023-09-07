@@ -6,21 +6,38 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:01:08 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/06 15:06:37 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:38:11 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-
-
-/* void	ft_leaks(void)
-{
+void	ft_leaks(void)
+/* {
 	system("leaks -q philo");
 	atexit(ft_leaks);
 } */
 
-int	main(int ac, char **av) // hay que comprobar los leaks de momoria aunque no deberia de haber.
+void	clr_routines(t_master *academy)
+{
+	int	i;
+
+	i = 0;
+	while (i < academy->number_of_philos)
+	{
+		pthread_mutex_destroy(&academy->arr_forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&academy->dr_mutexes->eating);
+	pthread_mutex_destroy(&academy->dr_mutexes->dead);
+	pthread_mutex_destroy(&academy->dr_mutexes->print);
+	free(academy->arr_forks);
+	free(academy->arr_philos);
+	free(academy->arr_threads);
+	free(academy->dr_mutexes);
+}
+
+int	main(int ac, char **av)
 {
 	t_master	academy;
 

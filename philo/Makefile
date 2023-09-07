@@ -1,6 +1,6 @@
 # COMPILER INFO
 CC = cc
-FLAGS = -Wall -Wextra -Werror -fsanitize=thread -g3 # (data races)
+FLAGS = -Wall -Wextra -Werror # -fsanitize=thread -g3 # (data races)
 RM = rm -f
 
 # GENERAL INFO

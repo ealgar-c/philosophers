@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/06 15:05:36 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:29:36 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,15 @@ void	*check_death(void *philo_tocast)
 		}
 		pthread_mutex_unlock(&philo->academy->dr_mutexes->dead);
 	}
+	pthread_mutex_unlock(&philo->academy->dr_mutexes->dead);
 	return (NULL);
+}
+
+void	ft_routine(t_philo *philo)
+{
+	thinking(philo);
+	eating(philo);
+	sleeping(philo);
 }
 
 void	*ft_philo(void *philo_tocast)
@@ -66,27 +74,21 @@ void	*ft_philo(void *philo_tocast)
 	philo = (t_philo *)philo_tocast;
 	philo->last_meal = get_actual_time();
 	pthread_create(&check_death_thread, NULL, check_death, philo);
-	if (philo->index % 2 == 0)
-		usleep(1);
 	while (!finished_meal(philo->academy))
 	{
-		//podria intentar reducir esto haciendo una funcion por aqui to guapa
 		pthread_mutex_lock(&philo->academy->dr_mutexes->print);
 		if (!philo->academy->ph_dead)
 		{			
 			pthread_mutex_unlock(&philo->academy->dr_mutexes->print);
-			thinking(philo);
-			eating(philo);
-			sleeping(philo);
+			ft_routine(philo);
 		}
 		else
 		{
-		
 			pthread_mutex_unlock(&philo->academy->dr_mutexes->print);
 			break ;
 		}
 	}
-	//pthread_mutex_unlock(&philo->academy->dr_mutexes->print); (con el 5 800 200 200 7, cuando se termina de comer el programa sigue esperando a algo)
+	pthread_mutex_unlock(&philo->academy->dr_mutexes->print);
 	pthread_join(check_death_thread, NULL);
 	return (NULL);
 }
@@ -116,22 +118,4 @@ void	crt_routines(t_master *academy)
 		pthread_join(academy->arr_threads[i], NULL);
 		i++;
 	}
-}
-
-void	clr_routines(t_master *academy)
-{
-	int	i;
-
-	i = 0;
-	while (i < academy->number_of_philos)
-	{
-		pthread_mutex_destroy(&academy->arr_forks[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&academy->dr_mutexes->eating);
-	pthread_mutex_destroy(&academy->dr_mutexes->dead);
-	pthread_mutex_destroy(&academy->dr_mutexes->print);
-	free(academy->arr_forks);
-	free(academy->arr_philos);
-	free(academy->arr_threads);
 }

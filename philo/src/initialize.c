@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:16 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/06 14:27:27 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:30:05 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	init_mutexes(t_master *academy)
 	pthread_mutex_init(&academy->arr_philos->academy->dr_mutexes->dead, NULL);
 	pthread_mutex_init(&academy->arr_philos->academy->dr_mutexes->print, NULL);
 }
+
 void	init_philos(t_master *academy)
 {
 	int	i;
