@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/04 10:25:24 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:16:42 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	*monitoring(void *philo_tocast)
 	{
 		sem_wait(philo->academy->ph_dead);
 		sem_post(philo->academy->ph_dead);
+		pthread_mutex_lock(&philo->academy->dr_mutexes->die);
 		philo->academy->philodied = true;
+		pthread_mutex_unlock(&philo->academy->dr_mutexes->die);
 		exit (0);
 		return (NULL);
 	}
@@ -46,14 +48,23 @@ void	*check_death(void *philo_tocast)
 	philo = (t_philo *)philo_tocast;
 	while (1)
 	{
+		pthread_mutex_lock(&philo->academy->dr_mutexes->upd_time);
+		if (finished_meal(philo))
+			break ;
+		pthread_mutex_lock(&philo->academy->dr_mutexes->eating);
 		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
-			&& !philo->academy->philodied && !finished_meal(philo))
+			&& !philo->academy->philodied)
 		{
+			pthread_mutex_unlock(&philo->academy->dr_mutexes->upd_time);
+			pthread_mutex_unlock(&philo->academy->dr_mutexes->eating);
 			print_state(philo, 3);
 			sem_post(philo->academy->ph_dead);
 			exit(0);
 		}
+		pthread_mutex_unlock(&philo->academy->dr_mutexes->eating);
+		pthread_mutex_unlock(&philo->academy->dr_mutexes->upd_time);
 	}
+	return (NULL);
 }
 
 void	ft_philo(t_philo *philo)
@@ -63,15 +74,15 @@ void	ft_philo(t_philo *philo)
 
 	pthread_create(&monitoring_thread, NULL, monitoring, philo);
 	pthread_create(&check_death_thread, NULL, check_death, philo);
-	while (!finished_meal(philo) && !philo->academy->philodied)
+	while (!finished_meal(philo))
 	{
-		if (get_actual_time() - philo->last_meal > philo->academy->time_to_die
-			&& !philo->academy->philodied)
+		pthread_mutex_lock(&philo->academy->dr_mutexes->die);
+		if (philo->academy->philodied)
 		{
-			print_state(philo, 3);
-			sem_post(philo->academy->ph_dead);
-			exit(0);
+			pthread_mutex_unlock(&philo->academy->dr_mutexes->die);
+			break ;
 		}
+		pthread_mutex_unlock(&philo->academy->dr_mutexes->die);
 		thinking(philo);
 		eating(philo);
 		sleeping(philo);

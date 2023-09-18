@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:43:25 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/04 10:06:48 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:57:54 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct s_philo{
 	struct s_master	*academy;
 }	t_philo;
 
+typedef struct s_dr{
+	pthread_mutex_t	eating;
+	pthread_mutex_t	die;
+	pthread_mutex_t	upd_time;
+}	t_dr;
+
 typedef struct s_master{
 	int					number_of_philos;
 	int					time_to_die;
@@ -46,6 +52,7 @@ typedef struct s_master{
 	pthread_t			*arr_threads;
 	t_philo				*arr_philos;
 	sem_t				*forks;
+	t_dr				*dr_mutexes;
 }	t_master;
 
 //checker.c

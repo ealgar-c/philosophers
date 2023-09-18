@@ -25,6 +25,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@$(RM) $(OBJ)
+	@$(RM) -r $(OBJ_DIR)
 	@ echo "-->$(RED_CODE) $(NAME) cleaned 🗑  $(CEND_CODE)<--"
 
 fclean: clean

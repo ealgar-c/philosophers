@@ -1,6 +1,6 @@
 # COMPILER INFO
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=thread -g3
 RM = rm -f
 
 # GENERAL INFO
@@ -25,6 +25,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@$(RM) $(OBJ)
+	@$(RM) -r $(OBJ_DIR)
 	@ echo "-->$(RED_CODE) $(NAME) cleaned 🗑  $(CEND_CODE)<--"
 
 fclean: clean

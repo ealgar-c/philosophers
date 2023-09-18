@@ -6,17 +6,17 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:01:08 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/07 11:38:11 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:12:04 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	ft_leaks(void)
-/* {
+/*void	ft_leaks(void)
+{
 	system("leaks -q philo");
 	atexit(ft_leaks);
-} */
+}*/
 
 void	clr_routines(t_master *academy)
 {

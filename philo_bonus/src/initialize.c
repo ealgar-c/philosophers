@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:16 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:03:26 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:58:10 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_academy(t_master *academy, int ac, char **av)
 			* academy->number_of_philos);
 	academy->arr_philos = malloc(sizeof(t_philo) * academy->number_of_philos);
 	academy->philodied = false;
+	academy->dr_mutexes = malloc(sizeof(t_dr));
 }
 
 void	init_semaphores(t_master *academy)
@@ -35,6 +36,13 @@ void	init_semaphores(t_master *academy)
 			academy->number_of_philos);
 	sem_unlink("ph_dead");
 	academy->ph_dead = sem_open("ph_dead", O_CREAT, 0600, 0);
+}
+
+void	init_mutexes(t_master *academy)
+{
+	pthread_mutex_init(&academy->dr_mutexes->eating, NULL);
+	pthread_mutex_init(&academy->dr_mutexes->die, NULL);
+	pthread_mutex_init(&academy->dr_mutexes->upd_time, NULL);
 }
 
 void	init_philos(t_master *academy)

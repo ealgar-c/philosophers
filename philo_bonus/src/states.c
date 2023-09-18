@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:48 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/23 14:44:13 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:27:59 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ void	eating(t_philo *philo)
 	sem_wait(philo->academy->forks);
 	print_state(philo, 4);
 	print_state(philo, 0);
+	pthread_mutex_lock(&philo->academy->dr_mutexes->upd_time);
 	philo->last_meal = get_actual_time();
-	philo->nb_of_meals++;
+	pthread_mutex_unlock(&philo->academy->dr_mutexes->upd_time);
 	usleep(philo->academy->time_to_eat * 1000);
+	pthread_mutex_lock(&philo->academy->dr_mutexes->eating);
+	philo->nb_of_meals++;
+	pthread_mutex_unlock(&philo->academy->dr_mutexes->eating);
 	sem_post(philo->academy->forks);
 	sem_post(philo->academy->forks);
 }

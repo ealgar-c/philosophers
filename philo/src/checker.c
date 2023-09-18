@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:41:31 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/21 12:41:42 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:24:17 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool	check_args(int ac, char **av)
 	if (valid_atoi(av[1]) && valid_atoi(av[2]) && valid_atoi(av[3])
 		&& valid_atoi(av[4]))
 	{
+		if (ft_atoi(av[1]) == 0)
+			return (false);
 		if (ac == 6)
 		{
 			if (valid_atoi(av[5]))
@@ -54,5 +56,4 @@ void	bad_args(void)
 	printf("Bad arguments, Execute the program as shown below:\n");
 	printf("./philo number_of_philosophers time_to_die time_to_eat ");
 	printf("time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
-	exit(1);
 }

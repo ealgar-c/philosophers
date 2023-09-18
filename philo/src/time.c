@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:41:54 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/08/25 16:58:06 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:20:06 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ long	process_timer(t_philo *philo)
 
 void	ft_usleep(int time)
 {
-	usleep(time * 1000);
+	if (time <= 0)
+		usleep(0);
+	else
+		usleep(time * 1000);
 }
