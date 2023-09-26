@@ -5,8 +5,8 @@
 	<br />
 	<img src="https://img.shields.io/badge/norme-OK-success?style=flat"/>
 	<img src="https://img.shields.io/badge/leaks-Clean-success?style=flat"/>
-	<img src="https://img.shields.io/badge/bonus-done-success?style=flat"/>
-	<img src="https://img.shields.io/badge/-unknown%2F100-inactive?style=flat&logo=42&logoColor=000" />
+	<img src="https://img.shields.io/badge/bonus-not%20done-red?style=flat"/>
+	<img src="https://img.shields.io/badge/-100%2F100-inactive?style=flat&logo=42&logoColor=000" />
 </div>
 
 <h2 align="center">📜 PROYECT DESCRIPTION 📜</h2>
@@ -17,24 +17,25 @@ Eat, Sleep, Spaghetti, repeat. This project is about learning how threads work b
 
 ```
 .
+├── README.md
 ├── philo
-│   ├── Makefile
-│   ├── include
-│   │   └── philo.h
-│   ├── objs
-│   └── src
-│       ├── checker.c
-│       ├── initialize.c
-│       ├── main.c
-│       ├── routine.c
-│       ├── states.c
-│       └── time.c
+│   ├── Makefile
+│   ├── include
+│   │   └── philo.h
+│   └── src
+│       ├── checker.c
+│       ├── initialize.c
+│       ├── main.c
+│       ├── routine.c
+│       ├── states.c
+│       ├── time.c
+│       └── utils.c
 └── philo_bonus
     ├── Makefile
     ├── include
-    │   └── philo_bonus.h
-    ├── objs
+    │   └── philo_bonus.h
     └── src
+        ├── bonus.c
         ├── checker.c
         ├── initialize.c
         ├── main.c
