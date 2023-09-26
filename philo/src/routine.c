@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:43:19 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/07 11:29:36 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:22:51 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	finished_meal(t_master *academy)
 	return (true);
 }
 
-void	*check_death(void *philo_tocast)
+static void	*check_death(void *philo_tocast)
 {
 	t_philo	*philo;
 
@@ -59,14 +59,14 @@ void	*check_death(void *philo_tocast)
 	return (NULL);
 }
 
-void	ft_routine(t_philo *philo)
+static void	ft_routine(t_philo *philo)
 {
 	thinking(philo);
 	eating(philo);
 	sleeping(philo);
 }
 
-void	*ft_philo(void *philo_tocast)
+static void	*ft_philo(void *philo_tocast)
 {
 	t_philo		*philo;
 	pthread_t	check_death_thread;

@@ -6,20 +6,20 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:41:31 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/12 17:24:17 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:20:32 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-bool	ft_isdigit(int c)
+static bool	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (true);
 	return (false);
 }
 
-bool	valid_atoi(char *str)
+static bool	valid_atoi(char *str)
 {
 	int	i;
 

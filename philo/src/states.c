@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 12:42:48 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/07 11:25:24 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:19:58 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	thinking(t_philo *philo)
 	print_state(philo, 1);
 }
 
-void	take_forks(t_philo *philo)
+static void	take_forks(t_philo *philo)
 {
 	if (philo->index % 2 == 0)
 	{
@@ -66,7 +66,7 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(&philo->academy->dr_mutexes->dead);
 	philo->last_meal = get_actual_time();
 	pthread_mutex_unlock(&philo->academy->dr_mutexes->dead);
-	ft_usleep(philo->academy->time_to_eat - 5);
+	ft_usleep(philo->academy->time_to_eat);
 	pthread_mutex_lock(&philo->academy->dr_mutexes->eating);
 	philo->nb_of_meals++;
 	pthread_mutex_unlock(&philo->academy->dr_mutexes->eating);

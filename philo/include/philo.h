@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:43:25 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/09/07 11:29:51 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:22:59 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ typedef struct s_master{
 }	t_master;
 
 //checker.c
-bool	ft_isdigit(int c);
-bool	valid_atoi(char *str);
 bool	check_args(int ac, char **av);
 void	bad_args(void);
 
@@ -78,11 +76,9 @@ void	sleeping(t_philo *philo);
 
 // routine.c
 bool	finished_meal(t_master *academy);
-void	*ft_philo(void *philo_tocast);
 void	crt_routines(t_master *academy);
 
 // utils.c
-void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_atoi(const char *str);
 
 #endif
