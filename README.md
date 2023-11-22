@@ -6,7 +6,7 @@
 	<img src="https://img.shields.io/badge/norme-OK-success?style=flat"/>
 	<img src="https://img.shields.io/badge/leaks-Clean-success?style=flat"/>
 	<img src="https://img.shields.io/badge/bonus-not%20done-red?style=flat"/>
-	<img src="https://img.shields.io/badge/-100%2F100-inactive?style=flat&logo=42&logoColor=000" />
+	<img src="https://img.shields.io/badge/-100%2F100-success?style=flat&logo=42&logoColor=000" />
 </div>
 
 <h2 align="center">📜 PROYECT DESCRIPTION 📜</h2>
