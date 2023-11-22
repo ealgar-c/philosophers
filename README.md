@@ -44,5 +44,3 @@ Eat, Sleep, Spaghetti, repeat. This project is about learning how threads work b
         └── time.c
 
 ```
-
-<h2 align="center">⚙️ PROYECT GENERAL PROCEDURE ⚙️</h2>
